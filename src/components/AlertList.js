@@ -8,18 +8,15 @@ function AlertList(props) {
 
     return <div>Alert List component
                 <ul className='alertList'>
-                    {listOfAlerts.map((item, index) => (
+                    {listOfAlerts.map((item, index) =>
                         <Alert key={index} item={item}/>
-                    ))}
+                    )}
                 </ul>
             </div>;
 };
 
-
 setInterval(() => {
-    const newAlerts = [...listOfAlerts];
-    newAlerts.push((new Date()).toString());
-    updateAlerts(newAlerts);
-}, 1000);
+    updateAlerts(oldAlerts => [...oldAlerts, new Date().toString()]);
+}, 2000);
 
 export default AlertList;
