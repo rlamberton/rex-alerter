@@ -17,11 +17,14 @@
   margin: 16px;
   padding: 4px;
   border-radius: 10px;
+  width: 800px;
+  font-size: 32px;
 }
 
 .alert a {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   color: white;
   text-decoration: none;
 }
@@ -40,6 +43,10 @@
 
 .alert.grey {
   background-color: grey;
+}
+
+.alert .smallFont {
+  font-size: 18px;
 }
 
 .rotateLeft90{

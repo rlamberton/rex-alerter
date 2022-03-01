@@ -11,8 +11,12 @@ function Alert(props) {
                 <a href={alert.url} target="_blank">
                     <div>{alert.time}</div>
                     <div>{alert.symbol}</div>
+                    <div className='smallFont'>
+                        {alert.oldPrice}
+                        <div className={arrowClass}> &#x279C; </div>
+                        {alert.newPrice}
+                    </div>
                     <div>{alert.pctChange}%</div>
-                    <div className={arrowClass}>&#x279C;</div>
                 </a>
             </li>;
 };

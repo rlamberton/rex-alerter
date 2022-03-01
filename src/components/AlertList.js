@@ -44,7 +44,9 @@ function getNewAlerts() {
         time: new Date().toLocaleTimeString(),
         symbol: 'BTC-VET',
         pctChange: '-10',
-        url: BITTREX_TRADING_URL + 'BTC-VET'
+        url: BITTREX_TRADING_URL + 'BTC-VET',
+        newPrice: '0.000323',
+        oldPrice: '0.000380'
     });
     return alerts;
 }
