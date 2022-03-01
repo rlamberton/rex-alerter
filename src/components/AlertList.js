@@ -4,7 +4,7 @@ import Alert from './Alert';
 var listOfAlerts, updateAlerts;
 
 function AlertList(props) {
-    [listOfAlerts, updateAlerts] = useState(['one','three','two','four']);
+    [listOfAlerts, updateAlerts] = useState([]);
 
     return <div>Alert List component
                 <ul className='alertList'>
@@ -16,7 +16,20 @@ function AlertList(props) {
 };
 
 setInterval(() => {
-    updateAlerts(oldAlerts => [...oldAlerts, new Date().toString()]);
+    const newAlerts = getNewAlerts();
+    if (newAlerts) {
+        updateAlerts(oldAlerts => [...oldAlerts].concat(newAlerts));
+    }
 }, 2000);
+
+function getNewAlerts() {
+    const alerts = [];
+    alerts.push({
+        time: new Date().toLocaleTimeString(),
+        symbol: 'ABC-DEF',
+        pctChange: '-10'
+    });
+    return alerts;
+}
 
 export default AlertList;
