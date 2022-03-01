@@ -19,6 +19,7 @@ setInterval(() => {
     const newAlerts = getNewAlerts();
     if (newAlerts) {
         updateAlerts(oldAlerts => [...oldAlerts].concat(newAlerts));
+        window.scrollTo(0,document.body.scrollHeight);
     }
 }, 2000);
 
@@ -27,7 +28,8 @@ function getNewAlerts() {
     alerts.push({
         time: new Date().toLocaleTimeString(),
         symbol: 'ABC-DEF',
-        pctChange: '-10'
+        pctChange: '-10',
+        url: '/'
     });
     return alerts;
 }

@@ -32,9 +32,24 @@
   list-style-type: none;
   color: white;
   margin: 16px;
-  padding: 16px;
-  background-color: green;
+  padding: 4px;
   border-radius: 10px;
+}
+
+.alert.red {
+  background-color: red;
+}
+
+.alert.orange {
+  background-color: orange;
+}
+
+.alert.green {
+  background-color: green;
+}
+
+.alert.grey {
+  background-color: grey;
 }
 
 .alert a {
