@@ -19,6 +19,13 @@
   border-radius: 10px;
 }
 
+.alert a {
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  text-decoration: none;
+}
+
 .alert.red {
   background-color: red;
 }
@@ -33,11 +40,6 @@
 
 .alert.grey {
   background-color: grey;
-}
-
-.alert a {
-  color: white;
-  text-decoration: none;
 }
 
 .rotateLeft90{
