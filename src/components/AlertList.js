@@ -1,12 +1,17 @@
 import { useState } from 'react';
 import Alert from './Alert';
 
+const BITTREX_TRADING_URL = 'https://global.bittrex.com/Market/Index?MarketName='
+const UPDATE_EVERY_5_SECONDS = 5000;
 var listOfAlerts, updateAlerts;
 
+/**
+ * React functional component for the Alert List
+ */
 function AlertList(props) {
     [listOfAlerts, updateAlerts] = useState([]);
 
-    return <div>Alert List component
+    return <div>Bittrex Alert List
                 <ul className='alertList'>
                     {listOfAlerts.map((item, index) =>
                         <Alert key={index} item={item}/>
@@ -15,21 +20,31 @@ function AlertList(props) {
             </div>;
 };
 
+/**
+ * Timer to fire every 5 seconds, to fetch the latest alerts from the API
+ */
 setInterval(() => {
     const newAlerts = getNewAlerts();
     if (newAlerts) {
         updateAlerts(oldAlerts => [...oldAlerts].concat(newAlerts));
-        window.scrollTo(0,document.body.scrollHeight);
-    }
-}, 2000);
 
+        // Auto-scroll to new element
+        const alertListElement = document.querySelector(".alertList");
+        let lastAlert = alertListElement.lastElementChild;
+        lastAlert.scrollIntoViewIfNeeded(true);
+    }
+}, UPDATE_EVERY_5_SECONDS);
+
+/**
+ * Retrieve any new alerts from the API
+ */
 function getNewAlerts() {
     const alerts = [];
     alerts.push({
         time: new Date().toLocaleTimeString(),
-        symbol: 'ABC-DEF',
+        symbol: 'BTC-VET',
         pctChange: '-10',
-        url: '/'
+        url: BITTREX_TRADING_URL + 'BTC-VET'
     });
     return alerts;
 }

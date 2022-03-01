@@ -1,15 +1,25 @@
+
+/**
+ * React functional component for each Alert
+ */
 function Alert(props) {
     const alert = props.item;
     const classname = 'alert ' + getColour(alert);
+    const arrowClass = (alert.pctChange < 0) ? 'rotateRight90' : 'rotateLeft90';
+
     return  <li className={classname}>
-                <a href={alert.url}>
+                <a href={alert.url} target="_blank">
                     <div>{alert.time}</div>
                     <div>{alert.symbol}</div>
                     <div>{alert.pctChange}%</div>
+                    <div className={arrowClass}>&#x279C;</div>
                 </a>
             </li>;
 };
 
+/**
+ * Determine the colour for the component, depending on the percentage change in price
+ */
 function getColour(alert) {
     if (alert.pctChange < -15) {
         return 'red';
