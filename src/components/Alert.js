@@ -25,8 +25,10 @@ function Alert(props) {
  * Determine the colour for the component, depending on the percentage change in price
  */
 function getColour(alert) {
-    if (alert.pctChange < -15) {
+    if (alert.pctChange < -20) {
         return 'red';
+    } else if (alert.pctChange < -10) {
+        return 'pink';
     } else if (alert.pctChange < 0) {
         return 'orange';
     } else if (alert.pctChange == 0) {
