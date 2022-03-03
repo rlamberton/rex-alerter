@@ -28,7 +28,7 @@ function AlertList(props) {
 setInterval(() => {
     const newAlertsPromise = getNewAlerts();
     newAlertsPromise.then((newAlerts) => {
-        if (newAlerts) {
+        if (newAlerts && newAlerts.length) {
             // Update the state with the new list
             updateAlerts(oldAlerts => [...oldAlerts].concat(newAlerts));
 
