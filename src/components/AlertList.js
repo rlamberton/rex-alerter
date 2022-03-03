@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Alert from './Alert';
-import getNewAlerts from './../service/GetAlerts';
+import getNewAlerts from '../service/AlertService';
 
 const UPDATE_EVERY_5_SECONDS = 5000;
 var listOfAlerts, updateAlerts;
@@ -35,7 +35,9 @@ setInterval(() => {
             // Auto-scroll to new element
             const alertListElement = document.querySelector(".alertList");
             let lastAlert = alertListElement.lastElementChild;
-            lastAlert.scrollIntoViewIfNeeded(true);
+            if (lastAlert) {
+                lastAlert.scrollIntoViewIfNeeded(true);
+            }
         }
     });
 

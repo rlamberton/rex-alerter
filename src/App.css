@@ -33,6 +33,10 @@
   background-color: red;
 }
 
+.alert.pink {
+  background-color: pink;
+}
+
 .alert.orange {
   background-color: orange;
 }
