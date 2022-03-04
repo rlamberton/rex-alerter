@@ -13,7 +13,7 @@ var listOfAlerts, updateAlerts;
 function AlertList(props) {
     [listOfAlerts, updateAlerts] = useState([]);
 
-    return  <div>Bittrex Alert List
+    return  <div>
                 <ul className='alertList'>
                     {listOfAlerts.map((item, index) =>
                         <Alert key={index} item={item}/>

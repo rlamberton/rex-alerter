@@ -11,6 +11,7 @@ function Alert(props) {
                 <a href={alert.url} target="_blank">
                     <div>{alert.time}</div>
                     <div>{alert.symbol}</div>
+                    <div>vol:&#8383;{alert.volume}</div>
                     <div className='smallFont'>
                         {alert.oldPrice}
                         <div className={arrowClass}> &#x279C; </div>
