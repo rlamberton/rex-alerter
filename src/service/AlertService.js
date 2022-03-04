@@ -38,9 +38,10 @@ async function getNewAlerts() {
     // Call the Bittrex API to fetch the latest market tickers
     const json = await getMarketTickers();
     
-    // Only interested in BTC markets
+    // Only interested in Online BTC markets
     Object.keys(json)
         .filter((key) => json[key].symbol.endsWith('-BTC'))
+        .filter((key) => marketSummary[json[key].symbol].market.status.trim() == 'ONLINE')
         .forEach((key) => {
             const ticker = json[key];
             const prevTicker = previousTickers[ticker.symbol];
