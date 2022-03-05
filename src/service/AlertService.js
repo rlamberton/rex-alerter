@@ -41,7 +41,7 @@ async function getNewAlerts() {
     // Only interested in Online BTC markets
     Object.keys(json)
         .filter((key) => json[key].symbol.endsWith('-BTC'))
-        .filter((key) => marketSummary[json[key].symbol].market.status.trim() == 'ONLINE')
+        .filter((key) => marketSummary[json[key].symbol].market.status.trim() == 'ONLINE' && !marketSummary[json[key].symbol].market.notice)
         .forEach((key) => {
             const ticker = json[key];
             const prevTicker = previousTickers[ticker.symbol];
@@ -50,9 +50,9 @@ async function getNewAlerts() {
                 const pctChange = (100 - 100 * (Number(ticker.askRate) / Number(prevTicker.askRate))).toFixed(2);
                 const volume = Number(marketSummary[ticker.symbol].summary.quoteVolume).toFixed(2);
 
-                // Only interested in those that have moved more than 5% up or down
+                // Only interested in those have significant volume and have moved more than 5% up or down
                 if (volume > 0.05 && (pctChange > 5 || pctChange < -5)) {
-                    alerts.push({
+                    const newAlert = {
                         time: new Date().toLocaleTimeString(),
                         symbol: ticker.symbol,
                         pctChange: pctChange,
@@ -60,7 +60,8 @@ async function getNewAlerts() {
                         newPrice: pctChange < 0 ? prevTicker.askRate : ticker.askRate,
                         oldPrice: pctChange < 0 ? ticker.askRate : prevTicker.askRate,
                         volume: volume
-                    });
+                    };
+                    alerts.push(newAlert);
                 }
             }
         });

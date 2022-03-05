@@ -27,13 +27,17 @@ function Alert(props) {
  */
 function getColour(alert) {
     if (alert.pctChange < -20) {
-        return 'red';
+        return 'red large';
     } else if (alert.pctChange < -10) {
-        return 'pink';
-    } else if (alert.pctChange < 0) {
+        return 'red';
+    } else if (alert.pctChange < -6) {
+        return 'purple';
+    } else if (alert.pctChange < -3) {
         return 'orange';
     } else if (alert.pctChange == 0) {
         return 'grey';
+    } else if (alert.pctChange > 10) {
+        return 'blue';
     } else {
         return 'green';
     }

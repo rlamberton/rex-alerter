@@ -33,12 +33,17 @@
   width: -webkit-fill-available;
 }
 
+.alert.large {
+  font-size: 50px;
+  font-weight: bold;
+}
+
 .alert.red {
   background-color: red;
 }
 
-.alert.pink {
-  background-color: lightcoral;
+.alert.purple {
+  background-color: purple;
 }
 
 .alert.orange {
@@ -47,6 +52,10 @@
 
 .alert.green {
   background-color: green;
+}
+
+.alert.blue {
+  background-color: blue;
 }
 
 .alert.grey {
