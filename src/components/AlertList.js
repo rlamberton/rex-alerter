@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import Alert from './Alert';
-import getNewAlerts from './../service/GetAlerts';
+import LastUpdated from './LastUpdated.js';
+import getNewAlerts from '../service/alertService';
 
-const UPDATE_EVERY_5_SECONDS = 5000;
-var listOfAlerts, updateAlerts;
+const REFRESH_PERIOD = 5000;    // Every 5 seconds
+var listOfAlerts, updateAlerts, lastUpdatedTime, setLastUpdatedTime;
 
 /**
  * React functional component for the Alert List
@@ -12,13 +13,15 @@ var listOfAlerts, updateAlerts;
  */
 function AlertList(props) {
     [listOfAlerts, updateAlerts] = useState([]);
+    [lastUpdatedTime, setLastUpdatedTime] = useState(new Date().toLocaleTimeString());
 
-    return  <div>Bittrex Alert List
+    return  <div>
                 <ul className='alertList'>
                     {listOfAlerts.map((item, index) =>
                         <Alert key={index} item={item}/>
                     )}
                 </ul>
+                <LastUpdated time={lastUpdatedTime}/>
             </div>;
 };
 
@@ -28,17 +31,17 @@ function AlertList(props) {
 setInterval(() => {
     const newAlertsPromise = getNewAlerts();
     newAlertsPromise.then((newAlerts) => {
-        if (newAlerts) {
+        if (newAlerts && newAlerts.length) {
             // Update the state with the new list
             updateAlerts(oldAlerts => [...oldAlerts].concat(newAlerts));
 
-            // Auto-scroll to new element
-            const alertListElement = document.querySelector(".alertList");
-            let lastAlert = alertListElement.lastElementChild;
-            lastAlert.scrollIntoViewIfNeeded(true);
+            // Auto-scroll to end of page if required
+            document.querySelector("#lastUpdated").scrollIntoViewIfNeeded(true);
         }
     });
 
-}, UPDATE_EVERY_5_SECONDS);
+    setLastUpdatedTime(new Date().toLocaleTimeString());
+
+}, REFRESH_PERIOD);
 
 export default AlertList;

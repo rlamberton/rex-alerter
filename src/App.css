@@ -17,7 +17,7 @@
   margin: 16px;
   padding: 4px;
   border-radius: 10px;
-  width: 800px;
+  max-width: 1200px;
   font-size: 32px;
 }
 
@@ -29,8 +29,26 @@
   text-decoration: none;
 }
 
+.alert div {
+  width: -webkit-fill-available;
+}
+
+.alert img {
+  height: 50px;
+ 
+}
+
+.alert.large {
+  font-size: 50px;
+  font-weight: bold;
+}
+
 .alert.red {
   background-color: red;
+}
+
+.alert.purple {
+  background-color: purple;
 }
 
 .alert.orange {
@@ -39,6 +57,10 @@
 
 .alert.green {
   background-color: green;
+}
+
+.alert.blue {
+  background-color: blue;
 }
 
 .alert.grey {
