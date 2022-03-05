@@ -9,9 +9,13 @@ function Alert(props) {
 
     return  <li className={classname}>
                 <a href={alert.url} target="_blank">
-                    <div>{alert.time}</div>
-                    <div>{alert.symbol}</div>
-                    <div>vol:&#8383;{alert.volume}</div>
+                    <div className='smallFont'>{alert.time}</div>
+                    <img src={alert.logoUrl}/>
+                    <div>
+                        <div>{alert.symbol}</div>
+                        <div className='smallFont'>{alert.name}</div>
+                    </div>
+                    <div className='smallFont'>vol:&#8383;{alert.volume}</div>
                     <div className='smallFont'>
                         {alert.oldPrice}
                         <div className={arrowClass}> &#x279C; </div>

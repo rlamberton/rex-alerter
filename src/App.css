@@ -33,6 +33,11 @@
   width: -webkit-fill-available;
 }
 
+.alert img {
+  height: 50px;
+ 
+}
+
 .alert.large {
   font-size: 50px;
   font-weight: bold;

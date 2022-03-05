@@ -1,4 +1,4 @@
-import { getMarketSummaries, getMarkets, getMarketTickers } from "./bittrexApi";
+import { getMarketSummaries, getMarkets, getMarketTickers, getCurrencies } from "./bittrexApi";
 
 const BITTREX_TRADING_URL = 'https://global.bittrex.com/Market/Index?MarketName=';
 const MINIMUM_VOLUME = 0.05;
@@ -7,6 +7,7 @@ const MINIMUM_PCT_CHANGE = 3;
 var previousTickers = {};
 const marketSummary = {};
 const markets = {};
+const currencies = {};
 
 (function init() {
     var response = getMarketSummaries();
@@ -21,6 +22,12 @@ const markets = {};
         Object.keys(json)
             .filter((key) => json[key].symbol.endsWith('-BTC'))
             .forEach((key) => markets[json[key].symbol] = json[key]);
+    })
+
+    response = getCurrencies();
+    response.then((json) => {
+        Object.keys(json)
+            .forEach((key) => currencies[json[key].symbol] = json[key]);
     })
 
 })();
@@ -50,6 +57,7 @@ async function getNewAlerts() {
 
                 // Only interested in those have significant volume and have moved more than 3% up or down
                 if (volume > MINIMUM_VOLUME && (pctChange > MINIMUM_PCT_CHANGE || pctChange < -MINIMUM_PCT_CHANGE)) {
+                    const currency = ticker.symbol.split('-')[0];
                     const newAlert = {
                         time: new Date().toLocaleTimeString(),
                         symbol: ticker.symbol,
@@ -57,7 +65,9 @@ async function getNewAlerts() {
                         url: BITTREX_TRADING_URL + swapSymbols(ticker.symbol),
                         newPrice: pctChange < 0 ? prevTicker.askRate : ticker.askRate,
                         oldPrice: pctChange < 0 ? ticker.askRate : prevTicker.askRate,
-                        volume: volume
+                        volume: volume,
+                        name: currencies[currency].name,
+                        logoUrl: currencies[currency].logoUrl
                     };
                     alerts.push(newAlert);
                 }
