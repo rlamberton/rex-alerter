@@ -36,3 +36,30 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+
+## List of requirements/functionality
+1. Invoke Bittrex Market Summaries API every 5 seconds
+2. Display alerts containing:
+   a) Time
+   b) Ticker Symbol
+   c) Currency name
+   d) Curreny logo
+   e) 24hr volume
+   f) ask price (current & previous)
+   g) Percentage change
+   h) Colour based on percantage change
+3. When ask price DECREASED:
+   a) More than 20% - Red colour, larger font size, bold, beep
+   b) More than 10% - Red colour, beep
+   c) More than 6% - Purple colour
+   d) More than 3% - Orange colour
+4. When ask price INCREASED:
+   a) No increase - Grey colour
+   b) Less than 10% - Green colour
+   c) More than 10% - Blue colour
+5. Auto-scroll to end when new alerts are displayed
+6. Ignore new coins that are less than 3 days old
+7. Ignore previously pumped coins (> 20%)
+8. Ignore non-BTC markets
+9. Ignore low-volume coins (< 0.05btc))
+10. Ignore markets with notices (e.g. delisting/removal) or which are OFFLINE

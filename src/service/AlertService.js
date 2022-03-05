@@ -9,6 +9,12 @@ const marketSummary = {};
 const markets = {};
 const currencies = {};
 
+/**
+ * Initialisation block:
+ * 1. Fetch the market summaries (for market volume)
+ * 2. Fetch the markets (for market status & notices)
+ * 3. Fetch the currencies (for currency name & logo)
+ */
 (function init() {
     var response = getMarketSummaries();
     response.then((json) => {
@@ -34,6 +40,7 @@ const currencies = {};
 
 /**
  * Retrieve any new alerts from the API
+ * This is invoked every 5 seconds
  */
 async function getNewAlerts() {
     const alerts = [];
@@ -87,7 +94,7 @@ async function getNewAlerts() {
 }
 
 /**
- * Swap the 2 symbols as they are in a different order in the url
+ * Swap the 2 symbols as they are in a different order in the trading url
  */
 function swapSymbols(symbols) {
     const arr = symbols.split('-');
