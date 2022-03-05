@@ -6,7 +6,7 @@ Prices are monitored every 5 seconds.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Pre Requisites
-This app requires a CORS proxy (Bittrex does not allow direct access via AJAX from JavaScript)
+This app requires a CORS proxy (Bittrex does not allow direct browser JS access via AJAX)
 You need to checkout the following repo: https://github.com/Rob--W/cors-anywhere
 and run `npm install` then `node server.js`
 The CORS proxy will then be accessible on localhost:8080
@@ -38,7 +38,7 @@ Your app is ready to be deployed!
 
 
 ## List of requirements/functionality
-1. Invoke Bittrex Market Summaries API every 5 seconds
+1. Invoke Bittrex public Market Summaries API every 5 seconds
 2. Display alerts containing:
    a) Time
    b) Ticker Symbol
@@ -58,8 +58,9 @@ Your app is ready to be deployed!
    b) Less than 10% - Green colour
    c) More than 10% - Blue colour
 5. Auto-scroll to end when new alerts are displayed
-6. Ignore new coins that are less than 3 days old
-7. Ignore previously pumped coins (> 20%)
-8. Ignore non-BTC markets
-9. Ignore low-volume coins (< 0.05btc))
-10. Ignore markets with notices (e.g. delisting/removal) or which are OFFLINE
+6. Click alert to open a new browser tab on the Bittrex trading screen for that market
+7. Ignore new coins that are less than 3 days old
+8. Ignore previously pumped coins (> 20%)
+9. Ignore non-BTC markets
+10. Ignore low-volume coins (< 0.05btc))
+11. Ignore markets with notices (e.g. delisting/removal) or which are OFFLINE

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Alert from './Alert';
-import getNewAlerts from '../service/AlertService';
+import getNewAlerts from '../service/alertService';
 
 const REFRESH_PERIOD = 5000;    // Every 5 seconds
 var listOfAlerts, updateAlerts;
