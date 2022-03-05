@@ -1,6 +1,6 @@
 # Bittrex Alerter
 This App fetches the latest crypto prices from Bittrex using the API.
-It will alert you when crypto prices drop by 10-15%
+It will alert you when crypto prices drop by 10-20%
 Prices are monitored every 5 seconds.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
