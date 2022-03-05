@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Alert from './Alert';
 import getNewAlerts from '../service/AlertService';
 
-const UPDATE_EVERY_5_SECONDS = 5000;
+const REFRESH_PERIOD = 5000;    // Every 5 seconds
 var listOfAlerts, updateAlerts;
 
 /**
@@ -41,6 +41,6 @@ setInterval(() => {
         }
     });
 
-}, UPDATE_EVERY_5_SECONDS);
+}, REFRESH_PERIOD);
 
 export default AlertList;

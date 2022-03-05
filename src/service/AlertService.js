@@ -1,29 +1,26 @@
 import { getMarketSummaries, getMarkets, getMarketTickers } from "./bittrexApi";
 
 const BITTREX_TRADING_URL = 'https://global.bittrex.com/Market/Index?MarketName=';
+const MINIMUM_VOLUME = 0.05;
+const MINIMUM_PCT_CHANGE = 3;
+
 var previousTickers = {};
 const marketSummary = {};
+const markets = {};
 
 (function init() {
     var response = getMarketSummaries();
     response.then((json) => {
         Object.keys(json)
             .filter((key) => json[key].symbol.endsWith('-BTC'))
-            .forEach((key) => {
-                const summary = json[key];
-                marketSummary[summary.symbol] = {summary: summary};
-            });
+            .forEach((key) => marketSummary[json[key].symbol] = json[key]);
     })
 
     response = getMarkets();
     response.then((json) => {
         Object.keys(json)
             .filter((key) => json[key].symbol.endsWith('-BTC'))
-            .forEach((key) => {
-                const market = json[key];
-                const summary = marketSummary[market.symbol];
-                summary.market = market;
-            });
+            .forEach((key) => markets[json[key].symbol] = json[key]);
     })
 
 })();
@@ -38,20 +35,21 @@ async function getNewAlerts() {
     // Call the Bittrex API to fetch the latest market tickers
     const json = await getMarketTickers();
     
-    // Only interested in Online BTC markets
+    // Only interested in Online BTC markets, that do not have a notice set (i.e. delisting/removal or offline)
     Object.keys(json)
         .filter((key) => json[key].symbol.endsWith('-BTC'))
-        .filter((key) => marketSummary[json[key].symbol].market.status.trim() == 'ONLINE' && !marketSummary[json[key].symbol].market.notice)
+        .filter((key) => markets[json[key].symbol].status.trim() == 'ONLINE' && !markets[json[key].symbol].notice)
         .forEach((key) => {
             const ticker = json[key];
             const prevTicker = previousTickers[ticker.symbol];
 
+            // Compare ask price with the previous call 5 seconds ago
             if (prevTicker) {
                 const pctChange = (100 - 100 * (Number(ticker.askRate) / Number(prevTicker.askRate))).toFixed(2);
-                const volume = Number(marketSummary[ticker.symbol].summary.quoteVolume).toFixed(2);
+                const volume = Number(marketSummary[ticker.symbol].quoteVolume).toFixed(2);
 
-                // Only interested in those have significant volume and have moved more than 5% up or down
-                if (volume > 0.05 && (pctChange > 5 || pctChange < -5)) {
+                // Only interested in those have significant volume and have moved more than 3% up or down
+                if (volume > MINIMUM_VOLUME && (pctChange > MINIMUM_PCT_CHANGE || pctChange < -MINIMUM_PCT_CHANGE)) {
                     const newAlert = {
                         time: new Date().toLocaleTimeString(),
                         symbol: ticker.symbol,
