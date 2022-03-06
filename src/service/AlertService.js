@@ -59,7 +59,7 @@ async function getNewAlerts() {
 
             // Compare ask price with the previous call 5 seconds ago
             if (prevTicker) {
-                const pctChange = (100 - 100 * (Number(ticker.askRate) / Number(prevTicker.askRate))).toFixed(2);
+                const pctChange = -(100 * (1 - Number(ticker.askRate) / Number(prevTicker.askRate))).toFixed(2);
                 const volume = Number(marketSummary[ticker.symbol].quoteVolume).toFixed(2);
 
                 // Only interested in those have significant volume and have moved more than 3% up or down
@@ -70,8 +70,8 @@ async function getNewAlerts() {
                         symbol: ticker.symbol,
                         pctChange: pctChange,
                         url: BITTREX_TRADING_URL + swapSymbols(ticker.symbol),
-                        newPrice: pctChange < 0 ? prevTicker.askRate : ticker.askRate,
-                        oldPrice: pctChange < 0 ? ticker.askRate : prevTicker.askRate,
+                        newPrice: pctChange > 0 ? prevTicker.askRate : ticker.askRate,
+                        oldPrice: pctChange > 0 ? ticker.askRate : prevTicker.askRate,
                         volume: volume,
                         name: currencies[currency].name,
                         logoUrl: currencies[currency].logoUrl
