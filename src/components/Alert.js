@@ -1,4 +1,4 @@
-import { unstable_batchedUpdates } from "react-dom";
+import React from 'react';
 
 const BEEP_ENABLED = false;     // Disabled as it was annoying
 
@@ -9,6 +9,7 @@ function Alert(props) {
     const alert = props.item;
     const classname = 'alert ' + getColour(alert);
     const arrowClass = (alert.pctChange < 0) ? 'rotateRight90' : 'rotateLeft90';
+console.log('rendering ' + JSON.stringify(alert));
 
     return  <li className={classname}>
                 <a href={alert.url} target="_blank">
@@ -27,7 +28,7 @@ function Alert(props) {
                     <div>{alert.pctChange}%</div>
                 </a>
             </li>;
-};
+}
 
 /**
  * Determine the colour for the component, depending on the percentage change in price
@@ -62,4 +63,5 @@ function beep() {
     }
 }
 
-export default Alert;
+export default React.memo(Alert);
+//export default Alert;
