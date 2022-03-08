@@ -9,7 +9,6 @@ function Alert(props) {
     const alert = props.item;
     const classname = 'alert ' + getColour(alert);
     const arrowClass = (alert.pctChange < 0) ? 'rotateRight90' : 'rotateLeft90';
-console.log('rendering ' + JSON.stringify(alert));
 
     return  <li className={classname}>
                 <a href={alert.url} target="_blank">
@@ -64,4 +63,3 @@ function beep() {
 }
 
 export default React.memo(Alert);
-//export default Alert;
