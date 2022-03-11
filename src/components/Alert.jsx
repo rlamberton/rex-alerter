@@ -1,4 +1,4 @@
-import { unstable_batchedUpdates } from "react-dom";
+import React from 'react';
 
 const BEEP_ENABLED = false;     // Disabled as it was annoying
 
@@ -27,7 +27,7 @@ function Alert(props) {
                     <div>{alert.pctChange}%</div>
                 </a>
             </li>;
-};
+}
 
 /**
  * Determine the colour for the component, depending on the percentage change in price
@@ -62,4 +62,4 @@ function beep() {
     }
 }
 
-export default Alert;
+export default React.memo(Alert);
