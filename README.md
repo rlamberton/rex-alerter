@@ -3,6 +3,8 @@ This App fetches the latest crypto prices from Bittrex using the API - see https
 It will alert you when crypto prices increase or drop by a minimum of 3%
 Prices are monitored every 5 seconds.
 
+![Image](/public/screenshot.png "screenshot")
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Pre Requisites
@@ -40,23 +42,23 @@ Your app is ready to be deployed!
 ## List of requirements/functionality
 1. Invoke Bittrex public Market Summaries API every 5 seconds
 2. Display alerts containing:
-   a) Time
-   b) Ticker Symbol
-   c) Currency name
-   d) Curreny logo
-   e) 24hr volume
-   f) ask price (current & previous)
-   g) Percentage change
-   h) Colour based on percantage change
+   * Time
+   * Ticker Symbol
+   * Currency name
+   * Curreny logo
+   * 24hr volume
+   * ask price (current & previous)
+   * Percentage change
+   * Colour based on percantage change
 3. When ask price DECREASED:
-   a) More than 20% - Red colour, larger font size, bold, beep
-   b) More than 10% - Red colour, beep
-   c) More than 6% - Purple colour
-   d) More than 3% - Orange colour
+   * More than 20% - Red colour, larger font size, bold, beep
+   * More than 10% - Red colour, beep
+   * More than 6% - Purple colour
+   * More than 3% - Orange colour
 4. When ask price INCREASED:
-   a) No increase - Grey colour
-   b) Less than 10% - Green colour
-   c) More than 10% - Blue colour
+   * No increase - Grey colour
+   * Less than 10% - Green colour
+   * More than 10% - Blue colour
 5. Auto-scroll to end when new alerts are displayed
 6. Click alert to open a new browser tab on the Bittrex trading screen for that market
 7. Ignore new coins that are less than 3 days old
