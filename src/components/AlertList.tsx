@@ -3,7 +3,7 @@ import Alert from './Alert';
 import LastUpdated from './LastUpdated';
 import getNewAlerts from '../service/AlertService';
 
-const REFRESH_PERIOD = 5000;    // Every 5 seconds
+const REFRESH_PERIOD : number = 5000;    // Every 5 seconds
 var listOfAlerts, updateAlerts, lastUpdatedTime, setLastUpdatedTime;
 
 /**
@@ -36,7 +36,7 @@ setInterval(() => {
             updateAlerts(oldAlerts => [...oldAlerts].concat(newAlerts));
 
             // Auto-scroll to end of page if required
-            document.querySelector("#lastUpdated").scrollIntoViewIfNeeded(true);
+            document.querySelector("#lastUpdated").scrollIntoView(true);
         }
     });
 

@@ -1,14 +1,14 @@
 import React from 'react';
 
-const BEEP_ENABLED = false;     // Disabled as it was annoying
+const BEEP_ENABLED : boolean = false;     // Disabled as it was annoying
 
 /**
  * React functional component for each Alert
  */
 function Alert(props) {
     const alert = props.item;
-    const classname = 'alert ' + getColour(alert);
-    const arrowClass = (alert.pctChange < 0) ? 'rotateRight90' : 'rotateLeft90';
+    const classname : string = 'alert ' + getColour(alert);
+    const arrowClass: string = (alert.pctChange < 0) ? 'rotateRight90' : 'rotateLeft90';
 
     return  <li className={classname}>
                 <a href={alert.url} target="_blank">
@@ -32,7 +32,7 @@ function Alert(props) {
 /**
  * Determine the colour for the component, depending on the percentage change in price
  */
-function getColour(alert) {
+function getColour(alert) : string {
     if (alert.pctChange < -20) {
         beep();
         return 'red large';
