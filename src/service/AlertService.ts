@@ -1,4 +1,4 @@
-import { getMarketSummaries, getMarkets, getMarketTickers, getCurrencies } from "./bittrexApi";
+import { getMarketSummaries, getMarkets, getMarketTickers, getCurrencies } from "../api/bittrexApi";
 
 const BITTREX_TRADING_URL = 'https://global.bittrex.com/Market/Index?MarketName=';
 const MINIMUM_VOLUME : number = 0.05;
