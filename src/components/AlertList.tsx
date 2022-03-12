@@ -36,7 +36,7 @@ setInterval(() => {
             updateAlerts(oldAlerts => [...oldAlerts].concat(newAlerts));
 
             // Auto-scroll to end of page if required
-            document.querySelector("#lastUpdated").scrollIntoView(true);
+            document.querySelector("#lastUpdated")?.scrollIntoView(true);
         }
     });
 

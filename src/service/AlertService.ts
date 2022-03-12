@@ -43,7 +43,7 @@ const currencies = {};
  * This is invoked every 5 seconds
  */
 async function getNewAlerts() {
-    const alerts = [];
+    const alerts : Array<{}> = [];
     const newTickers = {};
 
     // Call the Bittrex API to fetch the latest market tickers

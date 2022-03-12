@@ -2,9 +2,11 @@
     "compilerOptions": {
       "outDir": "./built",
       "allowJs": true,
-      "target": "es5",
+      "target": "ES6",
       "jsx":"react-jsx",
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
+      "strictNullChecks": true,
+      "module": "es6", 
     },
     "include": ["./src/**/*"]
   }
