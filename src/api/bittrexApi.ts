@@ -7,7 +7,7 @@ const MARKETS_URL = 'https://api.bittrex.com/v3/markets';
 const CURRENCIES_URL = 'https://api.bittrex.com/v3/currencies';
 
 async function getMarketTickers() {
-    const response = await fetch(CORS_PROXY + MARKET_TICKERS_URL, {'Content-Type': 'application/json', 'Accept': 'application/json'});
+    const response = await fetch(CORS_PROXY + MARKET_TICKERS_URL);
     if (response.ok) {
         const json = await response.json();
         return json;
@@ -17,7 +17,7 @@ async function getMarketTickers() {
 }
 
 async function getMarketSummaries() {
-    const response = await fetch(CORS_PROXY + MARKET_SUMMARIES_URL, {'Content-Type': 'application/json', 'Accept': 'application/json'});
+    const response = await fetch(CORS_PROXY + MARKET_SUMMARIES_URL);
     if (response.ok) {
         const json = await response.json();
         return json;
@@ -27,7 +27,7 @@ async function getMarketSummaries() {
 }
 
 async function getMarkets() {
-    const response = await fetch(CORS_PROXY + MARKETS_URL, {'Content-Type': 'application/json', 'Accept': 'application/json'});
+    const response = await fetch(CORS_PROXY + MARKETS_URL);
     if (response.ok) {
         const json = await response.json();
         return json;
@@ -37,7 +37,7 @@ async function getMarkets() {
 }
 
 async function getCurrencies() {
-    const response = await fetch(CORS_PROXY + CURRENCIES_URL, {'Content-Type': 'application/json', 'Accept': 'application/json'});
+    const response = await fetch(CORS_PROXY + CURRENCIES_URL);
     if (response.ok) {
         const json = await response.json();
         return json;

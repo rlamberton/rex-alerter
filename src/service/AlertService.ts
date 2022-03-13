@@ -1,7 +1,7 @@
-import { getMarketSummaries, getMarkets, getMarketTickers, getCurrencies } from "./bittrexApi";
+import { getMarketSummaries, getMarkets, getMarketTickers, getCurrencies } from "../api/bittrexApi";
 
 const BITTREX_TRADING_URL = 'https://global.bittrex.com/Market/Index?MarketName=';
-const MINIMUM_VOLUME = 0.05;
+const MINIMUM_VOLUME : number = 0.05;
 const MINIMUM_PCT_CHANGE = 3;
 
 var previousTickers = {};
@@ -43,7 +43,7 @@ const currencies = {};
  * This is invoked every 5 seconds
  */
 async function getNewAlerts() {
-    const alerts = [];
+    const alerts : Array<{}> = [];
     const newTickers = {};
 
     // Call the Bittrex API to fetch the latest market tickers
@@ -59,12 +59,12 @@ async function getNewAlerts() {
 
             // Compare ask price with the previous call 5 seconds ago
             if (prevTicker) {
-                const pctChange = -(100 * (1 - Number(ticker.askRate) / Number(prevTicker.askRate))).toFixed(2);
-                const volume = Number(marketSummary[ticker.symbol].quoteVolume).toFixed(2);
+                const pctChange : number = -(100 * (1 - Number(ticker.askRate) / Number(prevTicker.askRate))).toFixed(2);
+                const volume : number = Number(Number(marketSummary[ticker.symbol].quoteVolume).toFixed(2));
 
                 // Only interested in those have significant volume and have moved more than 3% up or down
                 if (volume > MINIMUM_VOLUME && (pctChange > MINIMUM_PCT_CHANGE || pctChange < -MINIMUM_PCT_CHANGE)) {
-                    const currency = ticker.symbol.split('-')[0];
+                    const currency : string = ticker.symbol.split('-')[0];
                     const newAlert = {
                         time: new Date().toLocaleTimeString(),
                         symbol: ticker.symbol,
@@ -96,7 +96,7 @@ async function getNewAlerts() {
 /**
  * Swap the 2 symbols as they are in a different order in the trading url
  */
-function swapSymbols(symbols) {
+function swapSymbols(symbols : string) : string {
     const arr = symbols.split('-');
     return arr[1] + '-' + arr[0];
 }
