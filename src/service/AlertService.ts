@@ -1,4 +1,5 @@
 import { getMarketSummaries, getMarkets, getMarketTickers, getCurrencies } from "../api/bittrexApi";
+import AlertType from "../types/AlertType";
 
 const BITTREX_TRADING_URL = 'https://global.bittrex.com/Market/Index?MarketName=';
 const MINIMUM_VOLUME : number = 0.05;
@@ -43,7 +44,7 @@ const currencies = {};
  * This is invoked every 5 seconds
  */
 async function getNewAlerts() {
-    const alerts : Array<{}> = [];
+    const alerts : Array<AlertType> = [];
     const newTickers = {};
 
     // Call the Bittrex API to fetch the latest market tickers
@@ -65,7 +66,7 @@ async function getNewAlerts() {
                 // Only interested in those have significant volume and have moved more than 3% up or down
                 if (volume > MINIMUM_VOLUME && (pctChange > MINIMUM_PCT_CHANGE || pctChange < -MINIMUM_PCT_CHANGE)) {
                     const currency : string = ticker.symbol.split('-')[0];
-                    const newAlert = {
+                    const newAlert : AlertType = {
                         time: new Date().toLocaleTimeString(),
                         symbol: ticker.symbol,
                         pctChange: pctChange,
