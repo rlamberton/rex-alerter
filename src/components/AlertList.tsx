@@ -11,7 +11,7 @@ var listOfAlerts, updateAlerts, lastUpdatedTime, setLastUpdatedTime;
  * 
  * Component state holds the list of alerts
  */
-function AlertList(props) {
+const alertList : React.FC = function AlertList(props) {
     [listOfAlerts, updateAlerts] = useState([]);
     [lastUpdatedTime, setLastUpdatedTime] = useState(new Date().toLocaleTimeString());
 
@@ -44,4 +44,4 @@ setInterval(() => {
 
 }, REFRESH_PERIOD);
 
-export default AlertList;
+export default alertList;

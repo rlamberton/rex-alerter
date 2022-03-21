@@ -1,7 +1,8 @@
+import React from 'react';
 import AlertList from './components/AlertList';
 import './App.css';
 
-function App() {
+const app : React.FC = function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -14,4 +15,4 @@ function App() {
   );
 }
 
-export default App;
+export default app;

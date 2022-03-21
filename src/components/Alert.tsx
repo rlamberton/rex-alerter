@@ -1,4 +1,5 @@
 import React from 'react';
+import AlertPropsType from '../types/AlertPropsType';
 import AlertType from '../types/AlertType';
 import './Alert.css';
 
@@ -7,7 +8,7 @@ const BEEP_ENABLED : boolean = false;     // Disabled as it was annoying
 /**
  * React functional component for each Alert
  */
-function Alert(props) {
+const alert : React.FC<AlertPropsType> = function Alert(props) {
     const alert : AlertType = props.item;
     const classname : string = 'alert ' + getColour(alert.pctChange);
     const arrowClass: string = (alert.pctChange < 0) ? 'rotateRight90' : 'rotateLeft90';
@@ -64,4 +65,4 @@ function beep() : void {
     }
 }
 
-export default React.memo(Alert);
+export default React.memo(alert);
