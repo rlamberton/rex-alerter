@@ -10,7 +10,7 @@ const BEEP_ENABLED : boolean = false;     // Disabled as it was annoying
  */
 const alert : React.FC<AlertPropsType> = function Alert(props) {
     const alert : AlertType = props.item;
-    const classname : string = 'alert ' + getColour(alert.pctChange);
+    const classname : string = 'alert ' + getClassName(alert.pctChange);
     const arrowClass: string = (alert.pctChange < 0) ? 'rotateRight90' : 'rotateLeft90';
 
     return  <li className={classname}>
@@ -35,7 +35,7 @@ const alert : React.FC<AlertPropsType> = function Alert(props) {
 /**
  * Determine the colour for the component, depending on the percentage change in price
  */
-function getColour(pctChange : number) : string {
+function getClassName(pctChange : number) : string {
     if (pctChange < -20) {
         beep();
         return 'red large';
