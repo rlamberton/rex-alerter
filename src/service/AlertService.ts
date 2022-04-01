@@ -43,7 +43,7 @@ const currencies = {};
  * Retrieve any new alerts from the API
  * This is invoked every 5 seconds
  */
-async function getNewAlerts() {
+async function getNewAlerts() : Promise<Array<AlertType>> {
     const alerts : Array<AlertType> = [];
     const newTickers = {};
 
