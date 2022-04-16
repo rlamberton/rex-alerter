@@ -38,20 +38,20 @@ const alert : React.FC<AlertPropsType> = function Alert(props) {
 function getClassName(pctChange : number) : string {
     if (pctChange < -20) {
         beep();
-        return 'red large';
+        return 'veryLargeDrop';
     } else if (pctChange < -10) {
         beep();
-        return 'red';
+        return 'largeDrop';
     } else if (pctChange < -6) {
-        return 'purple';
+        return 'mediumDrop';
     } else if (pctChange < -3) {
-        return 'orange';
+        return 'smallDrop';
     } else if (pctChange == 0) {
-        return 'grey';
+        return 'nochange';
     } else if (pctChange > 10) {
-        return 'blue';
+        return 'largeIncrease';
     } else {
-        return 'green';
+        return 'increase';
     }
 }
 
