@@ -25,32 +25,33 @@
    
   }
   
-  .alert.large {
+  .alert.veryLargeDrop {
+    background-color: red;
     font-size: 50px;
     font-weight: bold;
   }
   
-  .alert.red {
+  .alert.largeDrop {
     background-color: red;
   }
   
-  .alert.purple {
+  .alert.mediumDrop {
     background-color: purple;
   }
   
-  .alert.orange {
+  .alert.smallDrop {
     background-color: orange;
   }
   
-  .alert.green {
+  .alert.increase {
     background-color: green;
   }
   
-  .alert.blue {
+  .alert.largeIncrease {
     background-color: blue;
   }
   
-  .alert.grey {
+  .alert.nochange {
     background-color: grey;
   }
   

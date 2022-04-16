@@ -2,8 +2,8 @@ import { getMarketSummaries, getMarkets, getMarketTickers, getCurrencies } from 
 import AlertType from "../types/AlertType";
 
 const BITTREX_TRADING_URL = 'https://global.bittrex.com/Market/Index?MarketName=';
-const MINIMUM_VOLUME : number = 0.05;
-const MINIMUM_PCT_CHANGE = 3;
+const MINIMUM_VOLUME : number = 0.2;
+const MINIMUM_PCT_CHANGE = 5;
 
 var previousTickers = {};
 const marketSummary = {};
