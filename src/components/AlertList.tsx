@@ -13,7 +13,7 @@ const REFRESH_PERIOD : number = 5000;    // Every 5 seconds
  */
 const alertList : React.FC = function AlertList(props) {
     const [listOfAlerts, updateAlerts] = useState<AlertType[]>([]);
-    const [lastUpdatedTime, setLastUpdatedTime] = useState<string>(new Date().toLocaleTimeString());
+    const [lastUpdatedTime, setLastUpdatedTime] = useState<string>('');
 
     /* Timer to fire every 5 seconds, to fetch the latest alerts from the API */
     useEffect(() => {
@@ -37,7 +37,7 @@ const alertList : React.FC = function AlertList(props) {
     }, []);
 
     return  <div>
-                <ul className='alertList'>
+                <ul className='alertList' data-testid='alert-list'>
                     {listOfAlerts.map((item, index) =>
                         <Alert key={index} item={item}/>
                     )}

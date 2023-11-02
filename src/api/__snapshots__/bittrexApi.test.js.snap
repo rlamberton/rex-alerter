@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check getCurrencies 1`] = `Promise {}`;
+
+exports[`check getMarketSummaries 1`] = `Promise {}`;
+
+exports[`check getMarketTickers 1`] = `Promise {}`;
+
+exports[`check getMarkets 1`] = `Promise {}`;
