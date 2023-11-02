@@ -3,6 +3,6 @@ import App from './App';
 
 test('renders Bittrex Alert List', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Bittrex Alert List/i);
+  const linkElement = screen.getByText(/Bittrex Alerter/i);
   expect(linkElement).toBeInTheDocument();
 });

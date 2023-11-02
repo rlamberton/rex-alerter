@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check snapshot 1`] = `
+<DocumentFragment>
+  <li
+    class="alert increase"
+    data-testid="alert"
+  >
+    <a
+      data-testid="alert-url"
+      href="http://url.com"
+      target="_blank"
+    >
+      <div
+        class="smallFont"
+        data-testid="alert-time"
+      >
+        10:30
+      </div>
+      <img
+        data-testid="alert-logo-url"
+        src="http:/logo.com"
+      />
+      <div>
+        <div
+          data-testid="alert-symbol"
+        >
+          XYZ
+        </div>
+        <div
+          class="smallFont"
+          data-testid="alert-name"
+        >
+          crypto-name
+        </div>
+      </div>
+      <div
+        class="smallFont"
+        data-testid="alert-volume"
+      >
+        vol: ₿1000
+      </div>
+      <div
+        class="smallFont"
+        data-testid="alert-price"
+      >
+        2000
+        <div
+          class="rotateLeft90"
+          data-testid="alert-arrow"
+        >
+           ➜ 
+        </div>
+        2200
+      </div>
+      <div
+        data-testid="alert-pct-change"
+      >
+        10%
+      </div>
+    </a>
+  </li>
+</DocumentFragment>
+`;
