@@ -1,5 +1,7 @@
 # Bittrex Alerter
-This App fetches the latest crypto prices from Bittrex using the API - see https://bittrex.github.io/api/v3
+Written by: Richard Lamberton
+
+This is a React/Typescript app which fetches the latest crypto prices from Bittrex using the API - see https://bittrex.github.io/api/v3
 It will alert you when crypto prices increase or drop by a minimum of 3%
 Prices are monitored every 5 seconds.
 
@@ -16,6 +18,10 @@ The CORS proxy will then be accessible on localhost:8080
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+This needs to be run once, after the initial repo is downloaded. It installs all dependency libraries required by the app.
 
 ### `npm start`
 

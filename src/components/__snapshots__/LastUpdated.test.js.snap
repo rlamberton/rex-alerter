@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check snapshot 1`] = `
+<DocumentFragment>
+  <div
+    data-testid="alert-list-last-updated"
+    id="lastUpdated"
+  >
+    Last updated at 10:30
+  </div>
+</DocumentFragment>
+`;

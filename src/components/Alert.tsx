@@ -13,21 +13,21 @@ const alert : React.FC<AlertPropsType> = function Alert(props) {
     const classname : string = 'alert ' + getClassName(alert.pctChange);
     const arrowClass: string = (alert.pctChange < 0) ? 'rotateRight90' : 'rotateLeft90';
 
-    return  <li className={classname}>
-                <a href={alert.url} target="_blank">
-                    <div className='smallFont'>{alert.time}</div>
-                    <img src={alert.logoUrl}/>
+    return  <li className={classname} data-testid='alert'>
+                <a href={alert.url} target="_blank" data-testid='alert-url'>
+                    <div className='smallFont' data-testid='alert-time'>{alert.time}</div>
+                    <img src={alert.logoUrl} data-testid='alert-logo-url'/>
                     <div>
-                        <div>{alert.symbol}</div>
-                        <div className='smallFont'>{alert.name}</div>
+                        <div data-testid='alert-symbol'>{alert.symbol}</div>
+                        <div className='smallFont' data-testid='alert-name'>{alert.name}</div>
                     </div>
-                    <div className='smallFont'>vol: &#8383;{alert.volume}</div>
-                    <div className='smallFont'>
+                    <div className='smallFont' data-testid='alert-volume'>vol: &#8383;{alert.volume}</div>
+                    <div className='smallFont' data-testid='alert-price'>
                         {alert.oldPrice}
-                        <div className={arrowClass}> &#x279C; </div>
+                        <div className={arrowClass} data-testid='alert-arrow'> &#x279C; </div>
                         {alert.newPrice}
                     </div>
-                    <div>{alert.pctChange}%</div>
+                    <div data-testid='alert-pct-change'>{alert.pctChange}%</div>
                 </a>
             </li>;
 }
