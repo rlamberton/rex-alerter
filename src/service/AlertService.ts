@@ -16,7 +16,7 @@ const currencies = {};
  * 2. Fetch the markets (for market status & notices)
  * 3. Fetch the currencies (for currency name & logo)
  */
-(function init() {
+const doInit = (function init() {
     var response = getMarketSummaries();
     response.then((json) => {
         Object.keys(json)
@@ -49,11 +49,11 @@ async function getNewAlerts() : Promise<Array<AlertType>> {
 
     // Call the Bittrex API to fetch the latest market tickers
     const json = await getMarketTickers();
-    
+
     // Only interested in Online BTC markets, that do not have a notice set (i.e. delisting/removal or offline)
     Object.keys(json)
         .filter((key) => json[key].symbol.endsWith('-BTC'))
-        .filter((key) => markets[json[key].symbol].status.trim() == 'ONLINE' && !markets[json[key].symbol].notice)
+        .filter((key) => markets[json[key].symbol]?.status.trim() == 'ONLINE' && !markets[json[key].symbol].notice)
         .forEach((key) => {
             const ticker = json[key];
             const prevTicker = previousTickers[ticker.symbol];
