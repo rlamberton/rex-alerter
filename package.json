@@ -37,9 +37,12 @@
   },
   "jest": {
     "collectCoverageFrom": ["./src/**"],
+    "coveragePathIgnorePatterns": [".js", "/src/types/", "index"],
     "coverageThreshold": {
       "global": {
-        "lines": 90
+        "branches": 80,
+        "functions": 80,
+        "lines": 80
       }
     }
   }

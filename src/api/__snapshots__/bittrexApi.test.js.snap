@@ -1,9 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`check getCurrencies 1`] = `Promise {}`;
+exports[`When the getCurrencies API fails Then an error should be returned 1`] = `
+Object {
+  "error": "Call to the API failed",
+}
+`;
 
-exports[`check getMarketSummaries 1`] = `Promise {}`;
+exports[`When the getCurrencies API returns OK Then the mock results should be returned 1`] = `
+Object {
+  "api": "Working",
+}
+`;
 
-exports[`check getMarketTickers 1`] = `Promise {}`;
+exports[`When the getMarketSummaries API fails Then an error should be returned 1`] = `
+Object {
+  "error": "Call to the API failed",
+}
+`;
 
-exports[`check getMarkets 1`] = `Promise {}`;
+exports[`When the getMarketSummaries API returns OK Then the mock results should be returned 1`] = `
+Object {
+  "api": "Working",
+}
+`;
+
+exports[`When the getMarketTickers API fails Then an error should be returned 1`] = `
+Object {
+  "error": "Call to the API failed",
+}
+`;
+
+exports[`When the getMarketTickers API returns OK Then the mock results should be returned 1`] = `
+Object {
+  "api": "Working",
+}
+`;
+
+exports[`When the getMarkets API fails Then an error should be returned 1`] = `
+Object {
+  "error": "Call to the API failed",
+}
+`;
+
+exports[`When the getMarkets API returns OK Then the mock results should be returned 1`] = `
+Object {
+  "api": "Working",
+}
+`;
