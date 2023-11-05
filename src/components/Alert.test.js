@@ -18,17 +18,7 @@ test('check snapshot', () => {
     expect( asFragment() ).toMatchSnapshot();
 });
 
-test('check percentage - increase', () => {
-    const { getByTestId } = render(<Alert item={data} />);
-    const pctElement = getByTestId('alert-volume');
-    const alertElement = getByTestId('alert');
-    const arrowElement = getByTestId('alert-arrow');
-    expect(pctElement).toBeInTheDocument();
-    expect(alertElement).toHaveAttribute('class', 'alert increase');
-    expect(arrowElement).toHaveAttribute('class', 'rotateLeft90');
-});
-
-test('check percentage - decrease', () => {
+test('check percentage - veryLargeDrop', () => {
     const { getByTestId } = render(<Alert item={{...data, pctChange: -25}} />);
     const pctElement = getByTestId('alert-volume');
     const alertElement = getByTestId('alert');
@@ -38,13 +28,63 @@ test('check percentage - decrease', () => {
     expect(arrowElement).toHaveAttribute('class', 'rotateRight90');
 });
 
-test('check percentage - no change', () => {
+test('check percentage - largeDrop', () => {
+    const { getByTestId } = render(<Alert item={{...data, pctChange: -15}} />);
+    const pctElement = getByTestId('alert-volume');
+    const alertElement = getByTestId('alert');
+    const arrowElement = getByTestId('alert-arrow');
+    expect(pctElement).toBeInTheDocument();
+    expect(alertElement).toHaveAttribute('class', 'alert largeDrop');
+    expect(arrowElement).toHaveAttribute('class', 'rotateRight90');
+});
+
+test('check percentage - mediumDrop', () => {
+    const { getByTestId } = render(<Alert item={{...data, pctChange: -7}} />);
+    const pctElement = getByTestId('alert-volume');
+    const alertElement = getByTestId('alert');
+    const arrowElement = getByTestId('alert-arrow');
+    expect(pctElement).toBeInTheDocument();
+    expect(alertElement).toHaveAttribute('class', 'alert mediumDrop');
+    expect(arrowElement).toHaveAttribute('class', 'rotateRight90');
+});
+
+test('check percentage - smallDrop', () => {
+    const { getByTestId } = render(<Alert item={{...data, pctChange: -4}} />);
+    const pctElement = getByTestId('alert-volume');
+    const alertElement = getByTestId('alert');
+    const arrowElement = getByTestId('alert-arrow');
+    expect(pctElement).toBeInTheDocument();
+    expect(alertElement).toHaveAttribute('class', 'alert smallDrop');
+    expect(arrowElement).toHaveAttribute('class', 'rotateRight90');
+});
+
+test('check percentage - nochange', () => {
     const { getByTestId } = render(<Alert item={{...data, pctChange: 0}} />);
     const pctElement = getByTestId('alert-volume');
     const alertElement = getByTestId('alert');
     const arrowElement = getByTestId('alert-arrow');
     expect(pctElement).toBeInTheDocument();
     expect(alertElement).toHaveAttribute('class', 'alert nochange');
+    expect(arrowElement).toHaveAttribute('class', 'rotateLeft90');
+});
+
+test('check percentage - largeIncrease', () => {
+    const { getByTestId } = render(<Alert item={{...data, pctChange: 20}} />);
+    const pctElement = getByTestId('alert-volume');
+    const alertElement = getByTestId('alert');
+    const arrowElement = getByTestId('alert-arrow');
+    expect(pctElement).toBeInTheDocument();
+    expect(alertElement).toHaveAttribute('class', 'alert largeIncrease');
+    expect(arrowElement).toHaveAttribute('class', 'rotateLeft90');
+});
+
+test('check percentage - increase', () => {
+    const { getByTestId } = render(<Alert item={data} />);
+    const pctElement = getByTestId('alert-volume');
+    const alertElement = getByTestId('alert');
+    const arrowElement = getByTestId('alert-arrow');
+    expect(pctElement).toBeInTheDocument();
+    expect(alertElement).toHaveAttribute('class', 'alert increase');
     expect(arrowElement).toHaveAttribute('class', 'rotateLeft90');
 });
 

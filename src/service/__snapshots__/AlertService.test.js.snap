@@ -1,3 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`check snapshot 1`] = `Promise {}`;
+exports[`check snapshot 1`] = `Array []`;
+
+exports[`check snapshot 2`] = `Array []`;
+
+exports[`check snapshot 3`] = `
+Array [
+  Object {
+    "logoUrl": undefined,
+    "name": undefined,
+    "newPrice": 1,
+    "oldPrice": 100,
+    "pctChange": -99,
+    "symbol": "ETH-BTC",
+    "time": "08:30",
+    "url": "https://global.bittrex.com/Market/Index?MarketName=BTC-ETH",
+    "volume": 20,
+  },
+]
+`;

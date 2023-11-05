@@ -1,5 +1,5 @@
 import React from 'react';
-import AlertList from './components/AlertList';
+import { AlertList } from './components/AlertList';
 import './App.css';
 
 const app : React.FC = function App() {
