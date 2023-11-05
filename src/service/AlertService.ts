@@ -1,3 +1,4 @@
+import { wait } from "@testing-library/user-event/dist/utils";
 import { getMarketSummaries, getMarkets, getMarketTickers, getCurrencies } from "../api/bittrexApi";
 import AlertType from "../types/AlertType";
 
@@ -16,28 +17,21 @@ const currencies = {};
  * 2. Fetch the markets (for market status & notices)
  * 3. Fetch the currencies (for currency name & logo)
  */
-const doInit = (function init() {
-    var response = getMarketSummaries();
-    response.then((json) => {
-        Object.keys(json)
-            .filter((key) => json[key].symbol.endsWith('-BTC'))
-            .forEach((key) => marketSummary[json[key].symbol] = json[key]);
-    })
+const doInit = (async () => {
+    let json = await getMarketSummaries();
+    Object.keys(json)
+        .filter((key) => json[key].symbol.endsWith('-BTC'))
+        .forEach((key) => marketSummary[json[key].symbol] = json[key]);
 
-    response = getMarkets();
-    response.then((json) => {
-        Object.keys(json)
-            .filter((key) => json[key].symbol.endsWith('-BTC'))
-            .forEach((key) => markets[json[key].symbol] = json[key]);
-    })
+    json = await getMarkets();
+    Object.keys(json)
+        .filter((key) => json[key].symbol.endsWith('-BTC'))
+        .forEach((key) => markets[json[key].symbol] = json[key]);
 
-    response = getCurrencies();
-    response.then((json) => {
-        Object.keys(json)
-            .forEach((key) => currencies[json[key].symbol] = json[key]);
-    })
-
-})();
+    json = await getCurrencies();
+    Object.keys(json)
+        .forEach((key) => currencies[json[key].symbol] = json[key]);
+});
 
 /**
  * Retrieve any new alerts from the API
@@ -50,10 +44,14 @@ async function getNewAlerts() : Promise<Array<AlertType>> {
     // Call the Bittrex API to fetch the latest market tickers
     const json = await getMarketTickers();
 
+    if (Object.keys(markets).length === 0) {
+        doInit();
+    }
+
     // Only interested in Online BTC markets, that do not have a notice set (i.e. delisting/removal or offline)
     Object.keys(json)
         .filter((key) => json[key].symbol.endsWith('-BTC'))
-        .filter((key) => markets[json[key].symbol]?.status.trim() == 'ONLINE' && !markets[json[key].symbol].notice)
+        .filter((key) => (Object.keys(markets).length === 0) || (markets[json[key].symbol]?.status.trim() == 'ONLINE' && !markets[json[key].symbol].notice))
         .forEach((key) => {
             const ticker = json[key];
             const prevTicker = previousTickers[ticker.symbol];
@@ -74,8 +72,8 @@ async function getNewAlerts() : Promise<Array<AlertType>> {
                         newPrice: pctChange > 0 ? prevTicker.askRate : ticker.askRate,
                         oldPrice: pctChange > 0 ? ticker.askRate : prevTicker.askRate,
                         volume: volume,
-                        name: currencies[currency].name,
-                        logoUrl: currencies[currency].logoUrl
+                        name: currencies[currency]?.name,
+                        logoUrl: currencies[currency]?.logoUrl
                     };
                     alerts.push(newAlert);
                 }

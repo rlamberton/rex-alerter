@@ -40,9 +40,11 @@ test('check snapshot', () => {
 test('call fetchAlerts', () => {
     jest.spyOn(global, 'fetch').mockResolvedValue({
         ok: true,
-        json: jest.fn().mockResolvedValue({eth: {
-            symbol: 'ETH-BTC'
-        }})
+        json: jest.fn().mockResolvedValue(
+            { eth: { symbol: 'ETH-BTC', quoteVolume: 20, askRate: 100, name: "Etherium" } ,
+            'ETH-BTC': { symbol: 'ETH', status: 'ONLINE', name: "Etherium" },
+            ETH: { name: 'Etherium', symbol: 'XYZ', status: 'ONLINE'}}
+        )
     })
 
     const mock1 = jest.fn();
