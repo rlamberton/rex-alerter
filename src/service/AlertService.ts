@@ -1,4 +1,3 @@
-import { wait } from "@testing-library/user-event/dist/utils";
 import { getMarketSummaries, getMarkets, getMarketTickers, getCurrencies } from "../api/bittrexApi";
 import AlertType from "../types/AlertType";
 
@@ -6,10 +5,10 @@ const BITTREX_TRADING_URL = 'https://global.bittrex.com/Market/Index?MarketName=
 const MINIMUM_VOLUME : number = 0.2;
 const MINIMUM_PCT_CHANGE = 5;
 
-var previousTickers = {};
-const marketSummary = {};
-const markets = {};
-const currencies = {};
+var previousTickers : any = {};
+const marketSummary : any = {};
+const markets : any = {};
+const currencies : any = {};
 
 /**
  * Initialisation block:
@@ -39,7 +38,6 @@ const doInit = (async () => {
  */
 async function getNewAlerts() : Promise<Array<AlertType>> {
     const alerts : Array<AlertType> = [];
-    const newTickers = {};
 
     // Call the Bittrex API to fetch the latest market tickers
     const json = await getMarketTickers();
